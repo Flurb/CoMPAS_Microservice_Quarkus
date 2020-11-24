@@ -18,27 +18,30 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 @Path("/database")
 public class CompasResource {
 
+    /**
+     * Hardcoded BaseX choice
+     */
     @Inject
     BaseXService service;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String initial() throws IOException {
-        return service.executeComand("list");
+        return service.executeCommand("list");
     }
 
     @DELETE
     @Path("/{database}")
     @Produces(MediaType.TEXT_XML)
     public String dropDatabase(@PathParam String database) throws IOException {
-        return service.executeComand("drop db ".concat(database));
+        return service.executeCommand("drop db ".concat(database));
     }
 
     @PUT
     @Path("/{database}")
     @Produces(MediaType.TEXT_XML)
     public String addDatabase(@PathParam String database, String file) throws IOException {
-        return service.executeComand("create db ".concat(database).concat(" ").concat(file));
+        return service.executeCommand("create db ".concat(database).concat(" ").concat(file));
     }
 
     @POST
@@ -52,6 +55,6 @@ public class CompasResource {
     @Path("/command")
     @Produces(MediaType.TEXT_XML)
     public String command(String command) throws IOException {
-        return service.executeComand(command);
+        return service.executeCommand(command);
     }
 }

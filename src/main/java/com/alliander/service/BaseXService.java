@@ -8,28 +8,19 @@ import com.alliander.database.BaseXClient;
 import com.alliander.database.BaseXClient.Query;
 
 @ApplicationScoped
-public class BaseXService {
+public class BaseXService implements DatabaseService {
 
-    /**
-     * Execute a command in BaseX
-     * @param command the command to execute
-     * @return the result
-     * @throws IOException
-     */
-    public String executeComand(String command) throws IOException {
+    @Override
+    public String executeCommand(String command) {
         try (BaseXClient client = new BaseXClient("localhost", 1984, "admin", "admin")) {
             return client.execute(command);
+        } catch (IOException exception) {
+            return exception.getLocalizedMessage();
         }
     }
 
-    /**
-     * Execute a query in BaseX
-     * @param database the database to execute the query on
-     * @param query the query to execute
-     * @return the result
-     * @throws IOException
-     */
-    public String executeQuery(String database, String query) throws IOException {
+    @Override
+    public String executeQuery(String database, String query) {
         try (BaseXClient client = new BaseXClient("localhost", 1984, "admin", "admin")) {
             String response = "";
             client.execute("open ".concat(database));
@@ -40,6 +31,8 @@ public class BaseXService {
             }
             client.execute("close");
             return response;
+        }catch (IOException exception) {
+            return exception.getLocalizedMessage();
         }
     }
 
