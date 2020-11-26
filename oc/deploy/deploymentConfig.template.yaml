@@ -1,0 +1,24 @@
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: sa-compas-basex
+  name: sa-compas-basex
+  namespace: ogi-smt-dev
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: sa-compas-basex
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: sa-compas-basex
+        deploymentconfig: sa-compas-basex
+    spec:
+      containers:
+        - image: basex/basexhttp:latest
+          imagePullPolicy: Always
+          name: sa-compas-basex
