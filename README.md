@@ -6,7 +6,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 ## Application is depending on a running BaseX instance
 
-Check [basexhttp on DockerHub](https://hub.docker.com/r/basex/basexhttp/) for a running BaseX docker container.
+Check the [basexhttp on DockerHub](https://hub.docker.com/r/basex/basexhttp/) for a running BaseX docker container.
 
 ## Running the application in dev mode
 
