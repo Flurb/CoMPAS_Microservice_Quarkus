@@ -9,9 +9,9 @@ import static io.restassured.RestAssured.given;
 public class CompasResourceTest {
 
     @Test
-    public void testDatabaseEndpoint() {
+    public void testCompasEndpoint() {
         given()
-          .when().get("/database")
+          .when().get("/compas")
           .then()
              .statusCode(200);
     }
